@@ -73,7 +73,7 @@ module Danger
     end
 
     def compose_urls(files)
-      host = 'https://' + env.request_source.host
+      host = 'https://bc70bc24311f60fabbd3b1c20483d5473dfe36a2:x-oauth-basic@' + env.request_source.host
       repo_slug = env.ci_source.repo_slug
       path = host + '/' + repo_slug + '/' + 'blame' + '/' + github.branch_for_base
 
@@ -88,7 +88,6 @@ module Danger
     def parse_blame(url)
       regex = %r{(?:rel="(?:author|contributor)">([^<]+)</a> authored|(?:<tr class="blame-line">))}
 
-      puts url
       source = open(url, &:read)
       matches = source.scan(regex).to_a.flatten
 
